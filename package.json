@@ -1,5 +1,5 @@
 {
-  "name": "asana-migrate-project",
+  "name": "asana-project-duplicate",
   "version": "0.1.0",
   "description": "This duplicates the project and copies it over to another workspace.",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "author": "Janzen Zarzoso",
   "bin": {
-    "asana-migrate": "bin/index.js"
+    "asana-duplicate": "bin/index.js"
   },
   "license": "ISC",
   "preferGlobal": true,
