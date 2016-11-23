@@ -22,29 +22,26 @@ client.users.me()
 			workspace: workspaceId,
 			completed_since: 'now',
 			opt_fields: 'id,name,assignee_status,completed',
-			limit: 2
+			limit: 2 // response limit
 		})
 	})
 	.then((response) => {
-		response.stream().on('data', (task) => {
+		const stream = response.stream();
+
+		stream.on('data', (task) => {
 			if (task.assignee_status === 'today' || 
 				task.assignee_status === 'new') {
-				console.log(task);
+				stream.pause();
+
+				// make an api call to migrate the tasks
+				new Promise((resolve, reject) => {
+					console.log(task);
+					stream.resume();
+				});
 			}
+		}).on('end', () => {
+			console.log('Done transferring the tasks.')
+		}).on('error', (err) => {
+			console.error(err);
 		})
 	})
-	// .filter((task) => {
-	// 	return task.assignee_status === 'today' ||
-	// 		task.assignee_stat === 'new';
-	// })
-	// .then((list) => {
-	// 	console.log(list)
-	// })
-// var exec = require('child_process').exec;
-
-// var child = exec('curl -H "Authorization: Bearer ' + config.apiKey + '" https://app.asana.com/api/1.0/users/me', function(err, stdout, stderr) {
-// 	console.log(stdout);
-// });
-
-// var userArgs = process.argv.slice(2);
-// var searchPattern = userArgs[0];

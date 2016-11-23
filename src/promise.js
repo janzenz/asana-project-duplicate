@@ -48,14 +48,26 @@ const delay = (ms) => {
 	})
 }
 
-// delay(5000).then((ms) => {
-// 	console.log(ms + ' seconds have passed.');
-// 	return delay(1000);
-// }).then((ms) => {
-// 	console.log(ms + ' seconds have passed.');
-// }).catch((error) => {
-// 	console.log(error);
-// })
+console.log('Sync 1');
+
+delay(5000).then((ms) => {
+	console.log(ms + ' seconds have passed.');
+	return delay(1000);
+}).then((ms) => {
+	console.log(ms + ' seconds have passed.');
+}).catch((error) => {
+	console.log(error);
+})
+
+const newPromise = new Promise((resolve, reject) => {
+	resolve('test')
+});
+
+newPromise.then((result) => {
+	console.log(result)
+})
+
+console.log('Sync 2');
 
 Promise.all([
 	delay(10000),

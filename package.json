@@ -1,14 +1,15 @@
 {
-  "name": "asana-project-duplicate",
+  "name": "asana-migrate-project",
   "version": "0.1.0",
   "description": "This duplicates the project and copies it over to another workspace.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src -d bin"
+    "build": "babel src -d bin",
+    "watch": "babel src --out-dir bin --source-maps --watch"
   },
   "author": "Janzen Zarzoso",
   "bin": {
-    "asana-duplicate": "bin/index.js"
+    "asana-migrate": "bin/index.js"
   },
   "license": "ISC",
   "preferGlobal": true,
@@ -18,7 +19,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
-    "babel-polyfill": "^6.16.0",
+    "babel-polyfill": "^6.20.0",
     "babel-preset-es2015": "^6.18.0"
   }
 }
